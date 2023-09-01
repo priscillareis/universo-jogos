@@ -10,8 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlataformaRequest {
-    @NotNull(groups = PlataformaConsultar.class, message = "ID é obrigatório")
+    @NotNull(groups =  {ValidacaoConsulta.class, ValidacaoAtualizacao.class}, message = "ID é obrigatório")
     private Integer id;
-    @NotBlank(groups = PlataformaCadastrar.class, message = "Nome da plataforma é obrigatório")
+    @NotBlank(groups = {ValidacaoCadastro.class, ValidacaoAtualizacao.class},
+            message = "Nome da plataforma é obrigatório")
     private String nome;
 }

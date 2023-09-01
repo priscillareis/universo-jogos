@@ -15,12 +15,17 @@ public class PlataformaService implements PlataformaInbound {
     private final PlataformaDatastore plataformaDatastore;
 
     @Override
-    public Plataforma cadastrar(Plataforma plataforma) {
+    public Plataforma cadastrar(Plataforma plataforma) throws Exception {
         return plataformaDatastore.salvar(plataforma);
     }
 
     @Override
     public Plataforma consultar(Plataforma plataforma) throws Exception {
         return plataformaDatastore.consultar(plataforma);
+    }
+
+    @Override
+    public Plataforma atualizar(Plataforma plataforma) throws Exception {
+        return plataformaDatastore.atualizar(plataforma);
     }
 }

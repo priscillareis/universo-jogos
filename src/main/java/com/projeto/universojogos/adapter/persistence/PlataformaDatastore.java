@@ -18,10 +18,14 @@ public class PlataformaDatastore implements PlataformaOutbound {
     protected ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public Plataforma salvar(Plataforma plataforma) {
+    public Plataforma salvar(Plataforma plataforma) throws Exception {
         var entity = modelMapper.map(plataforma, PlataformaEntity.class);
-        var result = plataformaRepository.save(entity);
-        return modelMapper.map(result, Plataforma.class);
+        try{
+            var result = plataformaRepository.save(entity);
+            return modelMapper.map(result, Plataforma.class);
+        }catch(Exception ex){
+            throw new Exception(ex);
+        }
     }
 
     @Override
@@ -30,6 +34,20 @@ public class PlataformaDatastore implements PlataformaOutbound {
 
         if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: "+
                 plataforma.getId());
+
+        return modelMapper.map(result, Plataforma.class);
+    }
+
+    @Override
+    public Plataforma atualizar(Plataforma plataforma) throws Exception {
+        var entity = modelMapper.map(plataforma, PlataformaEntity.class);
+        var plataformaEncontrada = plataformaRepository.findById(entity.getId());
+
+        if (plataformaEncontrada.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: "+
+                plataforma.getId());
+        plataformaEncontrada.get().setNome(entity.getNome());
+
+        var result = plataformaRepository.save(plataformaEncontrada.get());
 
         return modelMapper.map(result, Plataforma.class);
     }

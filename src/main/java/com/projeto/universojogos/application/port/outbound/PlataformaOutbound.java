@@ -7,4 +7,5 @@ public interface PlataformaOutbound {
     Plataforma salvar(Plataforma plataforma) throws Exception;
     Plataforma consultar(Plataforma plataforma) throws Exception;
     Plataforma atualizar(Plataforma plataforma) throws Exception;
+    void deletar(Plataforma plataforma) throws Exception;
 }

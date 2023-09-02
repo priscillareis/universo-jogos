@@ -33,6 +33,7 @@ public class PlataformaController {
                                  @Validated(ValidacaoCadastro.class)
                                  @RequestBody PlataformaRequest plataformaRequest) throws Exception {
 
+        // TODO - Logs com o header
         LOGGER.log(Level.INFO,"Cadastro de plataforma. Plataforma: "+plataformaRequest.getNome(),headers);
 
         var domain = modelMapper.map(plataformaRequest, Plataforma.class);
@@ -58,7 +59,7 @@ public class PlataformaController {
         return modelMapper.map(result, PlataformaResponse.class);
     }
 
-    @PostMapping(value = "/atualizar")
+    @PutMapping(value = "/atualizar")
     PlataformaResponse atualizar(@RequestHeader HttpHeaders headers,
                                  @Validated(ValidacaoAtualizacao.class)
                                  @RequestBody PlataformaRequest plataformaRequest) throws Exception {
@@ -70,5 +71,19 @@ public class PlataformaController {
         LOGGER.log(Level.INFO,"Atualização realizada. ID: "+result.getId()+", Nome: "+result.getNome(),headers);
 
         return modelMapper.map(result, PlataformaResponse.class);
+    }
+
+    @DeleteMapping(value = "/deletar")
+    void deletar(@RequestHeader HttpHeaders headers,
+                               @Validated(ValidacaoConsulta.class)
+                               @RequestBody PlataformaRequest plataformaRequest) throws Exception {
+
+        LOGGER.log(Level.INFO,"Deletar plataforma. ID recebido: "+plataformaRequest.getId(),headers);
+
+        var domain = modelMapper.map(plataformaRequest, Plataforma.class);
+        plataformaInbound.deletar(domain);
+
+        LOGGER.log(Level.INFO,"Deleção realizada. ID: "+domain.getId(),headers);
+
     }
 }

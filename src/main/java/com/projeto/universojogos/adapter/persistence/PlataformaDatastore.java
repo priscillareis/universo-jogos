@@ -20,10 +20,10 @@ public class PlataformaDatastore implements PlataformaOutbound {
     @Override
     public Plataforma salvar(Plataforma plataforma) throws Exception {
         var entity = modelMapper.map(plataforma, PlataformaEntity.class);
-        try{
+        try {
             var result = plataformaRepository.save(entity);
             return modelMapper.map(result, Plataforma.class);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             throw new Exception(ex);
         }
     }
@@ -32,7 +32,7 @@ public class PlataformaDatastore implements PlataformaOutbound {
     public Plataforma consultar(Plataforma plataforma) throws Exception {
         var result = plataformaRepository.findById(plataforma.getId());
 
-        if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: "+
+        if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: " +
                 plataforma.getId());
 
         return modelMapper.map(result, Plataforma.class);
@@ -43,12 +43,27 @@ public class PlataformaDatastore implements PlataformaOutbound {
         var entity = modelMapper.map(plataforma, PlataformaEntity.class);
         var plataformaEncontrada = plataformaRepository.findById(entity.getId());
 
-        if (plataformaEncontrada.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: "+
-                plataforma.getId());
+        if (plataformaEncontrada.isEmpty())
+            throw new NotFoundException("Plataforma não encontrada. Código solicitado: " +
+                    plataforma.getId());
+
         plataformaEncontrada.get().setNome(entity.getNome());
 
-        var result = plataformaRepository.save(plataformaEncontrada.get());
+        try {
+            var result = plataformaRepository.save(plataformaEncontrada.get());
+            return modelMapper.map(result, Plataforma.class);
+        } catch (Exception ex) {
+            throw new Exception(ex);
+        }
+    }
 
-        return modelMapper.map(result, Plataforma.class);
+    @Override
+    public void deletar(Plataforma plataforma) throws Exception {
+        var entity = modelMapper.map(plataforma, PlataformaEntity.class);
+        try {
+            plataformaRepository.delete(entity);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 }

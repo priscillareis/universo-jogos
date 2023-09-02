@@ -20,7 +20,7 @@ import java.util.Map;
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = { NotFoundException.class})
-    protected ResponseEntity<Object> handleNotFound(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request) {
         Object response = new ErrorResponse(HttpStatus.NOT_FOUND.value(),
                 ex.getClass().getSimpleName(), ex.getMessage());
         return handleExceptionInternal(ex, response,

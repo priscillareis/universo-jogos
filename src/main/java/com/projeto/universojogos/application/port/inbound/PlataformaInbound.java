@@ -7,4 +7,5 @@ public interface PlataformaInbound {
     Plataforma cadastrar(Plataforma plataforma) throws Exception;
     Plataforma consultar(Plataforma plataforma) throws Exception;
     Plataforma atualizar(Plataforma plataforma) throws Exception;
+    void deletar(Plataforma plataforma) throws Exception;
 }

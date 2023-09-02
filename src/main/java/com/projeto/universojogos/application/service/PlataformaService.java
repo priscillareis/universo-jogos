@@ -28,4 +28,9 @@ public class PlataformaService implements PlataformaInbound {
     public Plataforma atualizar(Plataforma plataforma) throws Exception {
         return plataformaDatastore.atualizar(plataforma);
     }
+
+    @Override
+    public void deletar(Plataforma plataforma) throws Exception {
+        plataformaDatastore.deletar(plataforma);
+    }
 }

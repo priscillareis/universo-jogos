@@ -4,9 +4,9 @@ import com.projeto.universojogos.adapter.outbound.PlataformaRepository;
 import com.projeto.universojogos.adapter.persistence.entity.PlataformaEntity;
 import com.projeto.universojogos.application.port.outbound.PlataformaOutbound;
 import com.projeto.universojogos.core.domain.Plataforma;
+import com.projeto.universojogos.core.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import com.projeto.universojogos.core.exception.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +19,9 @@ public class PlataformaDatastore implements PlataformaOutbound {
 
     @Override
     public Plataforma salvar(Plataforma plataforma) throws Exception {
+
         var entity = modelMapper.map(plataforma, PlataformaEntity.class);
+
         try {
             var result = plataformaRepository.save(entity);
             return modelMapper.map(result, Plataforma.class);
@@ -30,6 +32,7 @@ public class PlataformaDatastore implements PlataformaOutbound {
 
     @Override
     public Plataforma consultar(Plataforma plataforma) throws Exception {
+
         var result = plataformaRepository.findById(plataforma.getId());
 
         if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: " +

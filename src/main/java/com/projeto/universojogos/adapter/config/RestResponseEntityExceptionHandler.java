@@ -2,6 +2,7 @@ package com.projeto.universojogos.adapter.config;
 
 import com.projeto.universojogos.adapter.dto.ErrorResponse;
 import com.projeto.universojogos.core.exception.NotFoundException;
+import com.projeto.universojogos.core.exception.ParametroInvalidoException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,6 +26,14 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 ex.getClass().getSimpleName(), ex.getMessage());
         return handleExceptionInternal(ex, response,
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value = { ParametroInvalidoException.class})
+    protected ResponseEntity<Object> handleParametroInvalido(Exception ex, WebRequest request) {
+        Object response = new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
+                ex.getClass().getSimpleName(), ex.getMessage());
+        return handleExceptionInternal(ex, response,
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     @Override

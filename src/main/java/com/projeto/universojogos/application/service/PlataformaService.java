@@ -24,13 +24,15 @@ public class PlataformaService implements PlataformaInbound {
 
     @Override
     public Plataforma consultar(Plataforma plataforma) throws Exception {
-        if(plataforma == null) throw new ParametroInvalidoException("Id Plataforma inválida");
+        if(plataforma == null) throw new ParametroInvalidoException("Plataforma inválida");
 
         return plataformaOutbound.consultar(plataforma);
     }
 
     @Override
     public Plataforma atualizar(Plataforma plataforma) throws Exception {
+        if(plataforma == null) throw new ParametroInvalidoException("Plataforma inválida");
+
         return plataformaOutbound.atualizar(plataforma);
     }
 

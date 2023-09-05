@@ -22,8 +22,9 @@ public class PlataformaServiceTest {
 
     Plataforma plataformaCadastroRequest = new Plataforma(null,"Nintendo");
     Plataforma plataformaConsultaRequest = new Plataforma(12,null);
+    Plataforma plataformaAtualizarRequest = new Plataforma(24,"Sony");
 
-    @DisplayName("Application * Cadastrar plataforma com sucesso")
+    @DisplayName("Application * Deve cadastrar plataforma com sucesso")
     @Test
     public void cadastrarPlataformaComSucesso() throws Exception {
         Plataforma plataforma = new Plataforma(10, "Nintendo");
@@ -38,13 +39,13 @@ public class PlataformaServiceTest {
         );
     }
 
-    @DisplayName("Application * Cadastrar plataforma com domain nulo")
+    @DisplayName("Application * Deve dar erro ao tentar cadastrar plataforma com domain nulo")
     @Test
     public void cadastrarPlataformaNula(){
         assertThrows(ParametroInvalidoException.class, () -> plataformaService.cadastrar(null));
     }
 
-    @DisplayName("Application * Cadastrar plataforma informando id")
+    @DisplayName("Application * Deve cadastrar plataforma informando id")
     @Test
     public void cadastrarPlataformaComId() throws Exception {
         Plataforma plataforma = new Plataforma(11, "Nintendo");
@@ -59,7 +60,7 @@ public class PlataformaServiceTest {
         );
     }
 
-    @DisplayName("Application * Consultar plataforma com sucesso")
+    @DisplayName("Application * Deve consultar plataforma com sucesso")
     @Test
     public void consultarPlataformaComSucesso() throws Exception {
         Plataforma plataforma = new Plataforma(12, "Nintendo");
@@ -74,13 +75,13 @@ public class PlataformaServiceTest {
         );
     }
 
-    @DisplayName("Application * Consultar plataforma com domain nulo")
+    @DisplayName("Application * Deve dar erro ao consultar plataforma com domain nulo")
     @Test
     public void consultarPlataformaNula(){
         assertThrows(ParametroInvalidoException.class, () -> plataformaService.consultar(null));
     }
 
-    @DisplayName("Application * Consultar plataforma informando nome")
+    @DisplayName("Application * Deve consultar plataforma com o id, ignorando nome")
     @Test
     public void consultarPlataformaComNome() throws Exception {
         Plataforma plataforma = new Plataforma(13, "Nintendo");
@@ -93,5 +94,26 @@ public class PlataformaServiceTest {
                 () -> assertEquals(plataforma.getId(), resultado.getId()),
                 () -> assertEquals(plataformaCadastroRequest.getNome(), resultado.getNome())
         );
+    }
+
+    @DisplayName("Application * Deve atualizar plataforma com sucesso")
+    @Test
+    public void atualizarPlataformaComSucesso() throws Exception {
+        Plataforma plataformaMock = new Plataforma(24, "Sony");
+
+        when(plataformaOutbound.consultar(any())).thenReturn(plataformaMock);
+
+        var resultado = plataformaService.consultar(plataformaAtualizarRequest);
+
+        assertAll("consultar-plataforma-sucesso",
+                () -> assertEquals(plataformaMock.getId(), resultado.getId()),
+                () -> assertEquals(plataformaMock.getNome(), resultado.getNome())
+        );
+    }
+
+    @DisplayName("Application * Deve dar erro ao atualizar plataforma com domain nulo")
+    @Test
+    public void atualizarPlataformaNula(){
+        assertThrows(ParametroInvalidoException.class, () -> plataformaService.atualizar(null));
     }
 }

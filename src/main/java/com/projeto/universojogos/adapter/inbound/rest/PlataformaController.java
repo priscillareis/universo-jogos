@@ -1,25 +1,22 @@
 package com.projeto.universojogos.adapter.inbound.rest;
 
-import com.projeto.universojogos.adapter.config.validation.ValidacaoAtualizacao;
-import com.projeto.universojogos.adapter.config.validation.ValidacaoCadastro;
-import com.projeto.universojogos.adapter.config.validation.ValidacaoConsulta;
+import com.projeto.universojogos.adapter.config.validation.*;
 import com.projeto.universojogos.adapter.dto.PlataformaRequest;
 import com.projeto.universojogos.adapter.dto.PlataformaResponse;
 import com.projeto.universojogos.application.port.inbound.PlataformaInbound;
 import com.projeto.universojogos.core.domain.Plataforma;
+import com.projeto.universojogos.core.domain.TipoLog;
+import com.projeto.universojogos.core.util.LoggingBase;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 @RestController
 @RequestMapping(value = "/plataforma")
 public class PlataformaController {
 
-    private final Logger LOGGER = Logger.getLogger(PlataformaController.class.getSimpleName());
+    private final LoggingBase LOGGER = new LoggingBase(PlataformaController.class);
 
     protected ModelMapper modelMapper = new ModelMapper();
     private final PlataformaInbound plataformaInbound;
@@ -33,15 +30,14 @@ public class PlataformaController {
                                  @Validated(ValidacaoCadastro.class)
                                  @RequestBody PlataformaRequest plataformaRequest) throws Exception {
 
-        // TODO - Logs com o header
-        LOGGER.log(Level.INFO,"Cadastro de plataforma. Plataforma: "+plataformaRequest.getNome(),headers);
+        LOGGER.createInfoLog(headers, plataformaRequest, TipoLog.REQUEST,"Cadastro de plataforma.");
 
-        var domain = modelMapper.map(plataformaRequest, Plataforma.class);
-        var result = plataformaInbound.cadastrar(domain);
+        var mapaDominio = modelMapper.map(plataformaRequest, Plataforma.class);
+        var resultadoPlataforma = plataformaInbound.cadastrar(mapaDominio);
 
-        LOGGER.log(Level.INFO,"Cadastro realizado. ID: "+result.getId()+", Nome: "+result.getNome(),headers);
+        LOGGER.createInfoLog(headers, resultadoPlataforma,TipoLog.RESPONSE,"Cadastro realizado.");
 
-        return modelMapper.map(result, PlataformaResponse.class);
+        return modelMapper.map(resultadoPlataforma, PlataformaResponse.class);
     }
 
     @GetMapping(value = "/consultar")
@@ -49,28 +45,29 @@ public class PlataformaController {
                                  @Validated(ValidacaoConsulta.class)
                                  @RequestBody PlataformaRequest plataformaRequest) throws Exception {
 
-        LOGGER.log(Level.INFO,"Consulta de plataforma. ID recebido: "+plataformaRequest.getId(),headers);
+        LOGGER.createInfoLog(headers, plataformaRequest, TipoLog.REQUEST,"Consulta de plataforma.");
 
-        var domain = modelMapper.map(plataformaRequest, Plataforma.class);
-        var result = plataformaInbound.consultar(domain);
+        var mapaDominio = modelMapper.map(plataformaRequest, Plataforma.class);
+        var resultadoPlataforma = plataformaInbound.consultar(mapaDominio);
 
-        LOGGER.log(Level.INFO,"Consulta realizada. ID: "+result.getId()+", Nome: "+result.getNome(),headers);
+        LOGGER.createInfoLog(headers, resultadoPlataforma,TipoLog.RESPONSE,"Consulta realizada.");
 
-        return modelMapper.map(result, PlataformaResponse.class);
+        return modelMapper.map(resultadoPlataforma, PlataformaResponse.class);
     }
 
     @PutMapping(value = "/atualizar")
     PlataformaResponse atualizar(@RequestHeader HttpHeaders headers,
                                  @Validated(ValidacaoAtualizacao.class)
                                  @RequestBody PlataformaRequest plataformaRequest) throws Exception {
-        LOGGER.log(Level.INFO,"Atualização de plataforma. Plataforma: "+plataformaRequest.getId(),headers);
 
-        var domain = modelMapper.map(plataformaRequest, Plataforma.class);
-        var result = plataformaInbound.atualizar(domain);
+        LOGGER.createInfoLog(headers, plataformaRequest, TipoLog.REQUEST,"Atualização de plataforma.");
 
-        LOGGER.log(Level.INFO,"Atualização realizada. ID: "+result.getId()+", Nome: "+result.getNome(),headers);
+        var mapaDominio = modelMapper.map(plataformaRequest, Plataforma.class);
+        var resultadoPlataforma = plataformaInbound.atualizar(mapaDominio);
 
-        return modelMapper.map(result, PlataformaResponse.class);
+        LOGGER.createInfoLog(headers, resultadoPlataforma,TipoLog.RESPONSE,"Atualização realizada.");
+
+        return modelMapper.map(resultadoPlataforma, PlataformaResponse.class);
     }
 
     @DeleteMapping(value = "/deletar")
@@ -78,12 +75,12 @@ public class PlataformaController {
                                @Validated(ValidacaoConsulta.class)
                                @RequestBody PlataformaRequest plataformaRequest) throws Exception {
 
-        LOGGER.log(Level.INFO,"Deletar plataforma. ID recebido: "+plataformaRequest.getId(),headers);
+        LOGGER.createInfoLog(headers, plataformaRequest, TipoLog.REQUEST,"Deletar plataforma.");
 
-        var domain = modelMapper.map(plataformaRequest, Plataforma.class);
-        plataformaInbound.deletar(domain);
+        var mapaDominio = modelMapper.map(plataformaRequest, Plataforma.class);
+        plataformaInbound.deletar(mapaDominio);
 
-        LOGGER.log(Level.INFO,"Deleção realizada. ID: "+domain.getId(),headers);
+        LOGGER.createInfoLog(headers, plataformaRequest,TipoLog.RESPONSE,"Deleção realizada.");
 
     }
 }

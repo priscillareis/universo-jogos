@@ -1,10 +1,12 @@
 package com.projeto.universojogos.adapter.persistence;
 
+import com.projeto.universojogos.adapter.inbound.rest.ConsoleController;
 import com.projeto.universojogos.adapter.outbound.PlataformaRepository;
 import com.projeto.universojogos.adapter.persistence.entity.PlataformaEntity;
 import com.projeto.universojogos.application.port.outbound.PlataformaOutbound;
 import com.projeto.universojogos.core.domain.Plataforma;
 import com.projeto.universojogos.core.exception.NotFoundException;
+import com.projeto.universojogos.core.util.LoggingBase;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class PlataformaDatastore implements PlataformaOutbound {
+
+    private final LoggingBase LOGGER = new LoggingBase(ConsoleController.class);
 
     private final PlataformaRepository plataformaRepository;
 
@@ -31,12 +35,23 @@ public class PlataformaDatastore implements PlataformaOutbound {
     }
 
     @Override
-    public Plataforma consultar(Plataforma plataforma) throws Exception {
+    public Plataforma consultarPorId(Plataforma plataforma) throws Exception {
 
         var result = plataformaRepository.findById(plataforma.getId());
 
         if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: " +
                 plataforma.getId());
+
+        return modelMapper.map(result, Plataforma.class);
+    }
+
+    @Override
+    public Plataforma consultarPorNome(Plataforma plataforma) throws Exception {
+
+        var result = plataformaRepository.findFirstByNomeContains(plataforma.getNome());
+
+        if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Nome solicitado: " +
+                plataforma.getNome());
 
         return modelMapper.map(result, Plataforma.class);
     }

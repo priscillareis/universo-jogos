@@ -48,7 +48,7 @@ public class PlataformaController {
         LOGGER.createInfoLog(headers, plataformaRequest, TipoLog.REQUEST,"Consulta de plataforma.");
 
         var mapaDominio = modelMapper.map(plataformaRequest, Plataforma.class);
-        var resultadoPlataforma = plataformaInbound.consultar(mapaDominio);
+        var resultadoPlataforma = plataformaInbound.consultarPorId(mapaDominio);
 
         LOGGER.createInfoLog(headers, resultadoPlataforma,TipoLog.RESPONSE,"Consulta realizada.");
 

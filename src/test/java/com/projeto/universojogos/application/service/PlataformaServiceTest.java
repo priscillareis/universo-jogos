@@ -65,9 +65,9 @@ public class PlataformaServiceTest {
     public void consultarPlataformaComSucesso() throws Exception {
         Plataforma plataforma = new Plataforma(12, "Nintendo");
 
-        when(plataformaOutbound.consultar(any())).thenReturn(plataforma);
+        when(plataformaOutbound.consultarPorId(any())).thenReturn(plataforma);
 
-        var resultado = plataformaService.consultar(plataformaConsultaRequest);
+        var resultado = plataformaService.consultarPorId(plataformaConsultaRequest);
 
         assertAll("consultar-plataforma-sucesso",
                 () -> assertEquals(plataforma.getId(), resultado.getId()),
@@ -78,7 +78,7 @@ public class PlataformaServiceTest {
     @DisplayName("Application * Deve dar erro ao consultar plataforma com domain nulo")
     @Test
     public void consultarPlataformaNula(){
-        assertThrows(ParametroInvalidoException.class, () -> plataformaService.consultar(null));
+        assertThrows(ParametroInvalidoException.class, () -> plataformaService.consultarPorId(null));
     }
 
     @DisplayName("Application * Deve consultar plataforma com o id, ignorando nome")
@@ -86,9 +86,9 @@ public class PlataformaServiceTest {
     public void consultarPlataformaComNome() throws Exception {
         Plataforma plataforma = new Plataforma(13, "Nintendo");
 
-        when(plataformaOutbound.consultar(any())).thenReturn(plataforma);
+        when(plataformaOutbound.consultarPorId(any())).thenReturn(plataforma);
 
-        var resultado = plataformaService.consultar(plataforma);
+        var resultado = plataformaService.consultarPorId(plataforma);
 
         assertAll("consultar-plataforma-sucesso-nome",
                 () -> assertEquals(plataforma.getId(), resultado.getId()),
@@ -101,9 +101,9 @@ public class PlataformaServiceTest {
     public void atualizarPlataformaComSucesso() throws Exception {
         Plataforma plataformaMock = new Plataforma(24, "Sony");
 
-        when(plataformaOutbound.consultar(any())).thenReturn(plataformaMock);
+        when(plataformaOutbound.consultarPorId(any())).thenReturn(plataformaMock);
 
-        var resultado = plataformaService.consultar(plataformaAtualizarRequest);
+        var resultado = plataformaService.consultarPorId(plataformaAtualizarRequest);
 
         assertAll("consultar-plataforma-sucesso",
                 () -> assertEquals(plataformaMock.getId(), resultado.getId()),

@@ -4,9 +4,11 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Plataforma {
+@NoArgsConstructor
+public class Console {
     private Integer id;
     private String nome;
+    private String anoLancamento;
+    private Plataforma plataforma;
 }

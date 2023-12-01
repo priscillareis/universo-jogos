@@ -5,7 +5,6 @@ import com.projeto.universojogos.adapter.dto.ConsoleRequest;
 import com.projeto.universojogos.adapter.dto.ConsoleResponse;
 import com.projeto.universojogos.adapter.mapper.ConsoleMapper;
 import com.projeto.universojogos.application.port.inbound.ConsoleInbound;
-import com.projeto.universojogos.core.domain.Console;
 import com.projeto.universojogos.core.domain.TipoLog;
 import com.projeto.universojogos.core.util.LoggingBase;
 import org.springframework.http.HttpHeaders;

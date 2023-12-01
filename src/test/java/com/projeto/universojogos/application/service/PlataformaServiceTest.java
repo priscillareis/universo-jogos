@@ -20,9 +20,9 @@ public class PlataformaServiceTest {
     @Mock
     PlataformaOutbound plataformaOutbound;
 
-    Plataforma plataformaCadastroRequest = new Plataforma(null,"Nintendo");
-    Plataforma plataformaConsultaRequest = new Plataforma(12,null);
-    Plataforma plataformaAtualizarRequest = new Plataforma(24,"Sony");
+    final Plataforma plataformaCadastroRequest = new Plataforma(null,"Nintendo");
+    final Plataforma plataformaConsultaRequest = new Plataforma(12,null);
+    final Plataforma plataformaAtualizarRequest = new Plataforma(24,"Sony");
 
     @DisplayName("Application * Deve cadastrar plataforma com sucesso")
     @Test

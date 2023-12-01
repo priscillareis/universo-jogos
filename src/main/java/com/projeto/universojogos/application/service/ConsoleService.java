@@ -1,8 +1,9 @@
 package com.projeto.universojogos.application.service;
 
 import com.projeto.universojogos.application.port.inbound.ConsoleInbound;
-import com.projeto.universojogos.application.port.inbound.PlataformaInbound;
+import com.projeto.universojogos.application.port.outbound.ConsoleOutbound;
 import com.projeto.universojogos.core.domain.Console;
+import com.projeto.universojogos.core.exception.MensagensPadraoException;
 import com.projeto.universojogos.core.exception.ParametroInvalidoException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +14,13 @@ import org.springframework.stereotype.Service;
 public class ConsoleService implements ConsoleInbound {
 
     @Autowired
-    private final PlataformaInbound plataformaInbound;
+    private final ConsoleOutbound consoleOutbound;
 
     @Override
     public Console cadastrar(Console console) throws Exception {
-        if(console.getPlataforma().getId() != null){
-            console.setPlataforma(plataformaInbound.consultarPorId(console.getPlataforma()));
-        } else if (console.getPlataforma().getNome() != null) {
-            console.setPlataforma(plataformaInbound.consultarPorNome(console.getPlataforma()));
-        } else {
-            throw new ParametroInvalidoException("Plataforma inválida");
-        }
+        if(console == null) throw new ParametroInvalidoException(MensagensPadraoException.CONSOLE_INVALIDO);
 
-        return null;
+        return consoleOutbound.salvar(console);
     }
 
     @Override

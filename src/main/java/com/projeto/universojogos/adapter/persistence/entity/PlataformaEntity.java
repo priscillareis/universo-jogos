@@ -13,5 +13,7 @@ public class PlataformaEntity {
     @Column(name = "id_plataforma", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="nome", nullable = false)
     private String nome;
 }

@@ -13,9 +13,14 @@ public class ConsoleEntity {
     @Column(name="id_console", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name="nome", nullable = false)
     private String nome;
+
     @Column(name="ano_lancamento")
     private String anoLancamento;
+
     @ManyToOne(targetEntity = PlataformaEntity.class)
+    @Column(name="id_plataforma", nullable = false)
     private PlataformaEntity plataforma;
 }

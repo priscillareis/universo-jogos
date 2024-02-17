@@ -1,22 +1,20 @@
 package com.projeto.universojogos.adapter.persistence.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "consoles")
 public class ConsoleEntity {
     @Id
-    @Column(name="id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name="id_console", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    @Column(name="ano_lancamento")
     private String anoLancamento;
     @ManyToOne(targetEntity = PlataformaEntity.class)
     private PlataformaEntity plataforma;

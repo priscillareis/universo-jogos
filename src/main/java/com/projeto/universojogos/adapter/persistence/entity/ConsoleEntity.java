@@ -21,6 +21,6 @@ public class ConsoleEntity {
     private String anoLancamento;
 
     @ManyToOne(targetEntity = PlataformaEntity.class)
-    @Column(name="id_plataforma", nullable = false)
+    @JoinColumn(name="id_plataforma", nullable = false)
     private PlataformaEntity plataforma;
 }

@@ -14,6 +14,6 @@ public class PlataformaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="nome", nullable = false)
+    @Column(name="nome", nullable = false, unique = true)
     private String nome;
 }

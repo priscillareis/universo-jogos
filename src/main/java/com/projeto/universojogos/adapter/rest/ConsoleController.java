@@ -41,7 +41,7 @@ public class ConsoleController {
     @GetMapping(value = "/consultar")
     ConsoleResponse consultar(@RequestHeader HttpHeaders headers,
                                  @Validated(ValidacaoConsulta.class)
-                                 @RequestBody int id) throws Exception {
+                                 @PathVariable int id) throws Exception {
 
         LOGGER.createInfoLog(headers, id, TipoLog.REQUEST,"Consulta de console.");
 
@@ -50,5 +50,19 @@ public class ConsoleController {
         LOGGER.createInfoLog(headers, resultado,TipoLog.RESPONSE,"Consulta realizada.");
 
         return ConsoleMapper.INSTANCE.toResponse(resultado);
+    }
+
+    @GetMapping(value = "/atualizar")
+    ConsoleResponse atualizar(@RequestHeader HttpHeaders headers,
+                              @Validated(ValidacaoAtualizacao.class)
+                              @RequestBody ConsoleRequest consoleRequest) throws Exception {
+        LOGGER.createInfoLog(headers, consoleRequest, TipoLog.REQUEST,"Atualização do console.");
+
+        var mapaDominio = ConsoleMapper.INSTANCE.toDomain(consoleRequest);
+        var resultadoConsole = consoleInbound.atualizar(mapaDominio);
+
+        LOGGER.createInfoLog(headers, resultadoConsole,TipoLog.RESPONSE,"Atualização realizada.");
+
+        return ConsoleMapper.INSTANCE.toResponse(resultadoConsole);
     }
 }

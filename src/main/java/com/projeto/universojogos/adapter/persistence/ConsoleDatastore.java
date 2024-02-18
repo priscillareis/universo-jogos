@@ -36,4 +36,22 @@ public class ConsoleDatastore implements ConsoleOutbound {
 
         return ConsoleMapper.INSTANCE.toDomain(resultado.get());
     }
+
+    @Override
+    public Console atualizar(Console console) throws Exception {
+        var entity = ConsoleMapper.INSTANCE.toEntity(console);
+        var consoleEncontrado = consoleRepository.findById(entity.getId());
+
+        if(consoleEncontrado.isEmpty())
+            throw new NotFoundException("Console não encontrado. Código solicitado: " + console.getId());
+
+        consoleEncontrado.get().setNome(entity.getNome());
+        try{
+            var resultado = consoleRepository.save(consoleEncontrado.get());
+            return ConsoleMapper.INSTANCE.toDomain(resultado);
+        }catch (Exception ex) {
+            throw new Exception(ex);
+        }
+    }
+
 }

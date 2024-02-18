@@ -31,8 +31,10 @@ public class ConsoleService implements ConsoleInbound {
     }
 
     @Override
-    public Console atualizar(Console console) {
-        return null;
+    public Console atualizar(Console console) throws Exception {
+        if(console == null) throw new ParametroInvalidoException(MensagensPadraoException.CONSOLE_INVALIDO);
+
+        return consoleOutbound.atualizar(console);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.projeto.universojogos.adapter.dto;
 
 import com.projeto.universojogos.adapter.config.validation.*;
+import com.projeto.universojogos.adapter.dto.plataforma.PlataformaRequest;
 import jakarta.validation.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +26,7 @@ public class PlataformaRequestTest {
     @DisplayName("Adapter * Deve criar a request de cadastro com sucesso")
     @Test
     public void cadastrarPlataformaComSucesso(){
-        PlataformaRequest plataformaRequest = new PlataformaRequest(null, "Sony");
+        PlataformaRequest plataformaRequest = new PlataformaRequest(0, "Sony");
 
         Set<ConstraintViolation<PlataformaRequest>> violations =  validator.validate(plataformaRequest,
                 ValidacaoCadastro.class);
@@ -40,7 +41,7 @@ public class PlataformaRequestTest {
     @DisplayName("Adapter * Deve ter violações ao tentar criar request de cadastro sem nome")
     @Test
     public void cadastrarPlataformaComErro() {
-        PlataformaRequest plataformaRequest = new PlataformaRequest(null, "");
+        PlataformaRequest plataformaRequest = new PlataformaRequest(0, "");
 
         Set<ConstraintViolation<PlataformaRequest>> violations =  validator.validate(plataformaRequest,
                 ValidacaoCadastro.class);
@@ -69,7 +70,7 @@ public class PlataformaRequestTest {
     @DisplayName("Adapter * Deve ter violações ao tentar criar request de consulta sem id")
     @Test
     public void consultarPlataformaComErro() {
-        PlataformaRequest plataformaRequest = new PlataformaRequest(null, "Xbox");
+        PlataformaRequest plataformaRequest = new PlataformaRequest(0, "Xbox");
 
         Set<ConstraintViolation<PlataformaRequest>> violations =  validator.validate(plataformaRequest,
                 ValidacaoConsulta.class);
@@ -99,7 +100,7 @@ public class PlataformaRequestTest {
     @DisplayName("Adapter * Deve ter violações ao tentar criar request de atualizar sem id e sem nome")
     @Test
     public void atualizarPlataformaComErro() {
-        PlataformaRequest plataformaRequest = new PlataformaRequest(null, null);
+        PlataformaRequest plataformaRequest = new PlataformaRequest(0, null);
 
         Set<ConstraintViolation<PlataformaRequest>> violations =  validator.validate(plataformaRequest,
                 ValidacaoAtualizacao.class);
@@ -110,7 +111,7 @@ public class PlataformaRequestTest {
     @DisplayName("Adapter * Deve ter violações ao tentar criar request de atualizar sem id")
     @Test
     public void atualizarPlataformaComErroId() {
-        PlataformaRequest plataformaRequest = new PlataformaRequest(null, "nintendo");
+        PlataformaRequest plataformaRequest = new PlataformaRequest(0, "nintendo");
 
         Set<ConstraintViolation<PlataformaRequest>> violations =  validator.validate(plataformaRequest,
                 ValidacaoAtualizacao.class);

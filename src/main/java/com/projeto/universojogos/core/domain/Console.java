@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Console {
-    private Integer id;
+    private int id;
     private String nome;
     private String anoLancamento;
     private Plataforma plataforma;

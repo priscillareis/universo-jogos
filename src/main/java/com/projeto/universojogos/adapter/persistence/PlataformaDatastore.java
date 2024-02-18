@@ -23,8 +23,8 @@ public class PlataformaDatastore implements PlataformaOutbound {
         var entity = PlataformaMapper.INSTANCE.toEntity(plataforma);
 
         try {
-            var result = plataformaRepository.save(entity);
-            return PlataformaMapper.INSTANCE.toDomain(result);
+            var resultado = plataformaRepository.save(entity);
+            return PlataformaMapper.INSTANCE.toDomain(resultado);
         } catch (Exception ex) {
             throw new Exception(ex);
         }
@@ -33,23 +33,23 @@ public class PlataformaDatastore implements PlataformaOutbound {
     @Override
     public Plataforma consultarPorId(Plataforma plataforma) throws Exception {
 
-        var result = plataformaRepository.findById(plataforma.getId());
+        var resultado = plataformaRepository.findById(plataforma.getId());
 
-        if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: " +
+        if (resultado.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Código solicitado: " +
                 plataforma.getId());
 
-        return PlataformaMapper.INSTANCE.toDomain(result.get());
+        return PlataformaMapper.INSTANCE.toDomain(resultado.get());
     }
 
     @Override
     public Plataforma consultarPorNome(Plataforma plataforma) throws Exception {
 
-        var result = plataformaRepository.findFirstByNomeContains(plataforma.getNome());
+        var resultado = plataformaRepository.findFirstByNomeContains(plataforma.getNome());
 
-        if (result.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Nome solicitado: " +
+        if (resultado.isEmpty()) throw new NotFoundException("Plataforma não encontrada. Nome solicitado: " +
                 plataforma.getNome());
 
-        return PlataformaMapper.INSTANCE.toDomain(result.get());
+        return PlataformaMapper.INSTANCE.toDomain(resultado.get());
     }
 
     @Override
@@ -64,8 +64,8 @@ public class PlataformaDatastore implements PlataformaOutbound {
         plataformaEncontrada.get().setNome(entity.getNome());
 
         try {
-            var result = plataformaRepository.save(plataformaEncontrada.get());
-            return PlataformaMapper.INSTANCE.toDomain(result);
+            var resultado = plataformaRepository.save(plataformaEncontrada.get());
+            return PlataformaMapper.INSTANCE.toDomain(resultado);
         } catch (Exception ex) {
             throw new Exception(ex);
         }

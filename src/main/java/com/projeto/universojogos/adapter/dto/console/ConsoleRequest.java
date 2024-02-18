@@ -1,6 +1,7 @@
-package com.projeto.universojogos.adapter.dto;
+package com.projeto.universojogos.adapter.dto.console;
 
 import com.projeto.universojogos.adapter.config.validation.ValidacaoCadastro;
+import com.projeto.universojogos.adapter.dto.plataforma.PlataformaRequest;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConsoleRequest {
-    private Integer id;
+    private int id;
 
     @NotBlank(groups = {ValidacaoCadastro.class},
               message = "Nome do console é obrigatório")

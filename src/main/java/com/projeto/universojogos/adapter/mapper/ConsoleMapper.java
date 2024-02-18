@@ -1,7 +1,6 @@
 package com.projeto.universojogos.adapter.mapper;
 
-import com.projeto.universojogos.adapter.dto.ConsoleRequest;
-import com.projeto.universojogos.adapter.dto.ConsoleResponse;
+import com.projeto.universojogos.adapter.dto.console.*;
 import com.projeto.universojogos.adapter.persistence.entity.ConsoleEntity;
 import com.projeto.universojogos.core.domain.Console;
 import org.mapstruct.Mapper;

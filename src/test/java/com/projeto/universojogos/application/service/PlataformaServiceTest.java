@@ -20,7 +20,7 @@ public class PlataformaServiceTest {
     @Mock
     PlataformaOutbound plataformaOutbound;
 
-    final Plataforma plataformaCadastroRequest = new Plataforma(null,"Nintendo");
+    final Plataforma plataformaCadastroRequest = new Plataforma(0,"Nintendo");
     final Plataforma plataformaConsultaRequest = new Plataforma(12,null);
     final Plataforma plataformaAtualizarRequest = new Plataforma(24,"Sony");
 

@@ -7,6 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Plataforma {
-    private Integer id;
+    private int id;
     private String nome;
 }

@@ -1,7 +1,6 @@
 package com.projeto.universojogos.adapter.mapper;
 
-import com.projeto.universojogos.adapter.dto.PlataformaRequest;
-import com.projeto.universojogos.adapter.dto.PlataformaResponse;
+import com.projeto.universojogos.adapter.dto.plataforma.*;
 import com.projeto.universojogos.adapter.persistence.entity.PlataformaEntity;
 import com.projeto.universojogos.core.domain.Plataforma;
 import org.mapstruct.Mapper;

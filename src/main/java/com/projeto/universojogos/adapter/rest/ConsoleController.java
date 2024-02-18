@@ -1,8 +1,7 @@
 package com.projeto.universojogos.adapter.rest;
 
-import com.projeto.universojogos.adapter.config.validation.ValidacaoCadastro;
-import com.projeto.universojogos.adapter.dto.ConsoleRequest;
-import com.projeto.universojogos.adapter.dto.ConsoleResponse;
+import com.projeto.universojogos.adapter.config.validation.*;
+import com.projeto.universojogos.adapter.dto.console.*;
 import com.projeto.universojogos.adapter.mapper.ConsoleMapper;
 import com.projeto.universojogos.application.port.inbound.ConsoleInbound;
 import com.projeto.universojogos.core.domain.TipoLog;
@@ -37,5 +36,19 @@ public class ConsoleController {
 
         return ConsoleMapper.INSTANCE.toResponse(resultadoConsole);
 
+    }
+
+    @GetMapping(value = "/consultar")
+    ConsoleResponse consultar(@RequestHeader HttpHeaders headers,
+                                 @Validated(ValidacaoConsulta.class)
+                                 @RequestBody int id) throws Exception {
+
+        LOGGER.createInfoLog(headers, id, TipoLog.REQUEST,"Consulta de console.");
+
+        var resultado = consoleInbound.consultar(id);
+
+        LOGGER.createInfoLog(headers, resultado,TipoLog.RESPONSE,"Consulta realizada.");
+
+        return ConsoleMapper.INSTANCE.toResponse(resultado);
     }
 }

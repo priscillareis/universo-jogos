@@ -1,4 +1,4 @@
-package com.projeto.universojogos.adapter.dto;
+package com.projeto.universojogos.adapter.dto.plataforma;
 
 import com.projeto.universojogos.adapter.config.validation.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 public class PlataformaRequest {
     @NotNull(groups =  {ValidacaoConsulta.class, ValidacaoAtualizacao.class}, message = "ID é obrigatório")
-    private Integer id;
+    private int id;
     @NotBlank(groups = {ValidacaoCadastro.class, ValidacaoAtualizacao.class},
             message = "Nome da plataforma é obrigatório")
     private String nome;

@@ -4,6 +4,7 @@ import com.projeto.universojogos.adapter.mapper.ConsoleMapper;
 import com.projeto.universojogos.adapter.outbound.ConsoleRepository;
 import com.projeto.universojogos.application.port.outbound.ConsoleOutbound;
 import com.projeto.universojogos.core.domain.Console;
+import com.projeto.universojogos.core.exception.NotFoundException;
 import com.projeto.universojogos.core.util.LoggingBase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -24,5 +25,15 @@ public class ConsoleDatastore implements ConsoleOutbound {
         }catch (Exception ex){
             throw new Exception(ex);
         }
+    }
+
+    @Override
+    public Console consultarPorId(int id) throws Exception {
+        var resultado = consoleRepository.findById(id);
+
+        if(resultado.isEmpty()) throw new NotFoundException("Console não encontrado. Código solicitado: "+
+                id);
+
+        return ConsoleMapper.INSTANCE.toDomain(resultado.get());
     }
 }

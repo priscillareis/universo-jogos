@@ -12,7 +12,7 @@ public class PlataformaEntity {
     @Id
     @Column(name = "id_plataforma", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(name="nome", nullable = false, unique = true)
     private String nome;

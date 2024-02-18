@@ -1,4 +1,4 @@
-package com.projeto.universojogos.adapter.dto;
+package com.projeto.universojogos.adapter.dto.plataforma;
 
 import lombok.*;
 
@@ -7,6 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlataformaResponse {
-    private Integer id;
+    private int id;
     private String nome;
 }

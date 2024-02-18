@@ -1,5 +1,6 @@
-package com.projeto.universojogos.adapter.dto;
+package com.projeto.universojogos.adapter.dto.console;
 
+import com.projeto.universojogos.adapter.dto.plataforma.PlataformaResponse;
 import lombok.*;
 
 @Getter
@@ -7,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConsoleResponse {
-    private Integer id;
+    private int id;
     private String nome;
     private String anoLancamento;
     private PlataformaResponse plataforma;

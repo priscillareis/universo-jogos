@@ -12,7 +12,7 @@ public class ConsoleEntity {
     @Id
     @Column(name="id_console", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(name="nome", nullable = false)
     private String nome;

@@ -24,10 +24,10 @@ public class ConsoleService implements ConsoleInbound {
     }
 
     @Override
-    public Console consultar(int id) throws Exception {
-        if(id == 0) throw new ParametroInvalidoException(MensagensPadraoException.CONSOLE_INVALIDO);
+    public Console consultar(Console console) throws Exception {
+        if(console == null) throw new ParametroInvalidoException(MensagensPadraoException.CONSOLE_INVALIDO);
 
-        return consoleOutbound.consultarPorId(id);
+        return consoleOutbound.consultarPorId(console);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ConsoleService implements ConsoleInbound {
     }
 
     @Override
-    public void deletar(Console console) {
-
+    public void deletar(Console console) throws Exception {
+        consoleOutbound.deletar(console);
     }
 }

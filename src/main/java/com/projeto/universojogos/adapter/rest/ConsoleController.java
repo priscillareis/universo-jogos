@@ -41,11 +41,12 @@ public class ConsoleController {
     @GetMapping(value = "/consultar")
     ConsoleResponse consultar(@RequestHeader HttpHeaders headers,
                                  @Validated(ValidacaoConsulta.class)
-                                 @PathVariable int id) throws Exception {
+                                 @PathVariable ConsoleRequest consoleRequest) throws Exception {
 
-        LOGGER.createInfoLog(headers, id, TipoLog.REQUEST,"Consulta de console.");
+        LOGGER.createInfoLog(headers, consoleRequest, TipoLog.REQUEST,"Consulta de console.");
 
-        var resultado = consoleInbound.consultar(id);
+        var mapaDominio = ConsoleMapper.INSTANCE.toDomain(consoleRequest);
+        var resultado = consoleInbound.consultar(mapaDominio);
 
         LOGGER.createInfoLog(headers, resultado,TipoLog.RESPONSE,"Consulta realizada.");
 
@@ -64,5 +65,17 @@ public class ConsoleController {
         LOGGER.createInfoLog(headers, resultadoConsole,TipoLog.RESPONSE,"Atualização realizada.");
 
         return ConsoleMapper.INSTANCE.toResponse(resultadoConsole);
+    }
+
+    @DeleteMapping(value = "/deletar")
+    void deletar(@RequestHeader HttpHeaders headers,
+                 @Validated(ValidacaoConsulta.class)
+                 @RequestBody ConsoleRequest consoleRequest) throws Exception {
+        LOGGER.createInfoLog(headers, consoleRequest, TipoLog.REQUEST,"Deletar console.");
+
+        var mapaDominio = ConsoleMapper.INSTANCE.toDomain(consoleRequest);
+        consoleInbound.deletar(mapaDominio);
+
+        LOGGER.createInfoLog(headers, consoleRequest, TipoLog.RESPONSE,"Deleção realizada.");
     }
 }

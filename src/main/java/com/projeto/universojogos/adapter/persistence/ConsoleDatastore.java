@@ -28,11 +28,12 @@ public class ConsoleDatastore implements ConsoleOutbound {
     }
 
     @Override
-    public Console consultarPorId(int id) throws Exception {
-        var resultado = consoleRepository.findById(id);
+    public Console consultarPorId(Console console) throws Exception {
+        var consoleId = console.getId();
+        var resultado = consoleRepository.findById(consoleId);
 
         if(resultado.isEmpty()) throw new NotFoundException("Console não encontrado. Código solicitado: "+
-                id);
+                consoleId);
 
         return ConsoleMapper.INSTANCE.toDomain(resultado.get());
     }
@@ -51,6 +52,16 @@ public class ConsoleDatastore implements ConsoleOutbound {
             return ConsoleMapper.INSTANCE.toDomain(resultado);
         }catch (Exception ex) {
             throw new Exception(ex);
+        }
+    }
+
+    @Override
+    public void deletar(Console console) throws Exception {
+        var entity = ConsoleMapper.INSTANCE.toEntity(console);
+        try{
+            consoleRepository.delete(entity);
+        }catch (Exception e){
+            throw new Exception(e);
         }
     }
 

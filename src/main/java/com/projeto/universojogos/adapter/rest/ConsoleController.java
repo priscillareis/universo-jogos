@@ -32,7 +32,7 @@ public class ConsoleController {
         var mapaDominio = ConsoleMapper.INSTANCE.toDomain(consoleRequest);
         var resultadoConsole = consoleInbound.cadastrar(mapaDominio);
 
-        LOGGER.createInfoLog(headers, resultadoConsole,TipoLog.RESPONSE,"Consulta realizada.");
+        LOGGER.createInfoLog(headers, resultadoConsole,TipoLog.RESPONSE,"Cadastro realizado.");
 
         return ConsoleMapper.INSTANCE.toResponse(resultadoConsole);
 

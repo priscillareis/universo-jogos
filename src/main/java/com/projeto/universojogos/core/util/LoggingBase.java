@@ -18,6 +18,10 @@ public class LoggingBase {
         this.logger = LoggerFactory.getLogger(classe.getName());
     }
 
+    public LoggingBase(final String classe) {
+        this.logger = LoggerFactory.getLogger(classe);
+    }
+
     private String fromMapToString(Map<String, Object> mapLogger){
         try{
             return (new ObjectMapper()).writeValueAsString(mapLogger);

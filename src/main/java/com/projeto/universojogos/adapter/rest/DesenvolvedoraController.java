@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/desenvolvedora")
-public class DesenvolvedoraController extends GenericCrudController<Desenvolvedora, Long, DesenvolvedoraRequest,
+public class DesenvolvedoraController extends GenericCrudController<Desenvolvedora, DesenvolvedoraRequest,
         DesenvolvedoraResponse> {
 
     @Autowired

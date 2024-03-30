@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 
-public abstract class GenericCrudController<T, ID extends Serializable,MT1, MT2> {
+public abstract class GenericCrudController<T, MT1, MT2> {
 
     public abstract GenericCrudInbound<T> getService();
 
     public abstract GenericMapper<MT1, MT2, T> getMapper();
-    private LoggingBase LOGGER = new LoggingBase("Controller");
+    private final LoggingBase LOGGER = new LoggingBase("Controller");
 
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<MT2> save(@RequestHeader HttpHeaders headers,

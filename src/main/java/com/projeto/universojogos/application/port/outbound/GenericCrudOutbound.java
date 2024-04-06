@@ -1,6 +1,14 @@
 package com.projeto.universojogos.application.port.outbound;
 
-public interface GenericCrudOutbound<T> {
+import java.io.Serializable;
 
-    T save(T dominio) throws Exception;
+public interface GenericCrudOutbound<T, ID extends Serializable> {
+
+    T cadastrar(T dominio) throws Exception;
+
+    T consultar(ID id) throws Exception;
+
+    T atualizar(ID id, T dominio) throws Exception;
+
+    void deletar(ID id) throws Exception;
 }

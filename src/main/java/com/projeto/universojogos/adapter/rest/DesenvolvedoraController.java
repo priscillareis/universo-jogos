@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/desenvolvedora")
-public class DesenvolvedoraController extends GenericCrudController<Desenvolvedora, DesenvolvedoraRequest,
+public class DesenvolvedoraController extends GenericCrudController<Desenvolvedora, Long, DesenvolvedoraRequest,
         DesenvolvedoraResponse> {
 
     @Autowired
     private DesenvolvedoraInbound desenvolvedoraInbound;
 
-    private final LoggingBase LOGGER = new LoggingBase(DesenvolvedoraController.class);
-
     @Override
-    public GenericCrudInbound<Desenvolvedora> getService() {
+    public GenericCrudInbound<Desenvolvedora, Long> getService() {
         return desenvolvedoraInbound;
     }
 

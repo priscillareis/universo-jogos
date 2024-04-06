@@ -7,19 +7,52 @@ import com.projeto.universojogos.core.exception.ParametroInvalidoException;
 import com.projeto.universojogos.core.util.LoggingBase;
 import org.springframework.stereotype.Service;
 
-@Service
-public abstract class GenericCrudService<T> implements GenericCrudInbound<T> {
+import java.io.Serializable;
 
-    protected abstract GenericCrudOutbound<T> getOutbound();
+@Service
+public abstract class GenericCrudService<T, ID extends Serializable> implements GenericCrudInbound<T, ID> {
+
+    protected abstract GenericCrudOutbound<T, ID> getOutbound();
     private final LoggingBase LOGGER = new LoggingBase("Service");
 
     @Override
-    public T save(T dominio) throws Exception {
+    public T cadastrar(T dominio) throws Exception {
         if (dominio == null){
             LOGGER.createErroLog(null, dominio, TipoLog.PROCESSO,"Recurso informado nulo.");
 
             throw new ParametroInvalidoException("Recurso informado é inválido.");
         }
-        return getOutbound().save(dominio);
+        return getOutbound().cadastrar(dominio);
+    }
+
+    @Override
+    public T consultar(ID id) throws Exception {
+        if (id == null){
+            LOGGER.createErroLog(null, id, TipoLog.PROCESSO,"Recurso informado nulo.");
+
+            throw new ParametroInvalidoException("Recurso informado é inválido.");
+        }
+        return getOutbound().consultar(id);
+    }
+
+    @Override
+    public T atualizar(ID id, T dominio) throws Exception {
+        if (id == null || dominio == null){
+            LOGGER.createErroLog(null, id, TipoLog.PROCESSO,"Recurso informado nulo.");
+
+            throw new ParametroInvalidoException("Recurso informado é inválido.");
+        }
+        return getOutbound().atualizar(id, dominio);
+    }
+
+    @Override
+    public void deletar(ID id) throws Exception {
+        if (id == null){
+            LOGGER.createErroLog(null, id, TipoLog.PROCESSO,"Recurso informado nulo.");
+
+            throw new ParametroInvalidoException("Recurso informado é inválido.");
+        }
+
+        getOutbound().deletar(id);
     }
 }

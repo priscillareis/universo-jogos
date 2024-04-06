@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class DesenvolvedoraDatastore extends GenericCrudDatastore<Desenvolvedora, Long, DesenvolvedoraEntity> implements DesenvolvedoraOutbound {
-    private final LoggingBase LOGGER = new LoggingBase(DesenvolvedoraDatastore.class);
     @Autowired
     private DesenvolvedoraRepository desenvolvedoraRepository;
 

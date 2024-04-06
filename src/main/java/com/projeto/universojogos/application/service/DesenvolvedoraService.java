@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class DesenvolvedoraService extends GenericCrudService<Desenvolvedora> implements DesenvolvedoraInbound {
+public class DesenvolvedoraService extends GenericCrudService<Desenvolvedora, Long> implements DesenvolvedoraInbound {
 
     @Autowired
     private final DesenvolvedoraOutbound desenvolvedoraOutbound;
 
     @Override
-    protected GenericCrudOutbound<Desenvolvedora> getOutbound() {
+    protected GenericCrudOutbound<Desenvolvedora, Long> getOutbound() {
         return desenvolvedoraOutbound;
     }
 

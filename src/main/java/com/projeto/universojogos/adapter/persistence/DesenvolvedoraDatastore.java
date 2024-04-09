@@ -6,7 +6,6 @@ import com.projeto.universojogos.adapter.outbound.DesenvolvedoraRepository;
 import com.projeto.universojogos.adapter.persistence.entity.DesenvolvedoraEntity;
 import com.projeto.universojogos.application.port.outbound.DesenvolvedoraOutbound;
 import com.projeto.universojogos.core.domain.Desenvolvedora;
-import com.projeto.universojogos.core.util.LoggingBase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class DesenvolvedoraDatastore extends GenericCrudDatastore<Desenvolvedora, Long, DesenvolvedoraEntity> implements DesenvolvedoraOutbound {
+public class DesenvolvedoraDatastore extends GenericCrudDatastore<Desenvolvedora, Long, DesenvolvedoraEntity>
+        implements DesenvolvedoraOutbound {
     @Autowired
     private DesenvolvedoraRepository desenvolvedoraRepository;
 

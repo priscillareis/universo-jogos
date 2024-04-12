@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PlataformaRepository extends JpaRepository<PlataformaEntity, Integer> {
+public interface PlataformaRepository extends JpaRepository<PlataformaEntity, Long> {
     Optional<PlataformaEntity> findFirstByNomeContains(String nome);
 }

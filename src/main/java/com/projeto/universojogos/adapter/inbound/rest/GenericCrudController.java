@@ -1,4 +1,4 @@
-package com.projeto.universojogos.adapter.rest;
+package com.projeto.universojogos.adapter.inbound.rest;
 
 import com.projeto.universojogos.adapter.config.validation.*;
 import com.projeto.universojogos.adapter.mapper.GenericMapper;

@@ -1,13 +1,14 @@
-package com.projeto.universojogos.adapter.mapper;
+package com.projeto.universojogos.adapter.mapper.desenvolvedora;
 
 import com.projeto.universojogos.adapter.dto.desenvolvedora.*;
+import com.projeto.universojogos.adapter.mapper.GenericMapper;
 import com.projeto.universojogos.core.domain.Desenvolvedora;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface DesenvolvedoraMapper extends GenericMapper<DesenvolvedoraRequest, DesenvolvedoraResponse,
-        Desenvolvedora>{
+        Desenvolvedora> {
 
     DesenvolvedoraMapper INSTANCE = Mappers.getMapper(DesenvolvedoraMapper.class);
 

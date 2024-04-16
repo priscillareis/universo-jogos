@@ -1,5 +1,6 @@
-package com.projeto.universojogos.adapter.mapper;
+package com.projeto.universojogos.adapter.mapper.console;
 
+import com.projeto.universojogos.adapter.mapper.GenericEntityMapper;
 import com.projeto.universojogos.adapter.persistence.entity.ConsoleEntity;
 import com.projeto.universojogos.core.domain.Console;
 import org.mapstruct.Mapper;

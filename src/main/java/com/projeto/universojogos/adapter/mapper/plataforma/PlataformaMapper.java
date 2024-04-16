@@ -1,6 +1,7 @@
-package com.projeto.universojogos.adapter.mapper;
+package com.projeto.universojogos.adapter.mapper.plataforma;
 
 import com.projeto.universojogos.adapter.dto.plataforma.*;
+import com.projeto.universojogos.adapter.mapper.GenericMapper;
 import com.projeto.universojogos.core.domain.Plataforma;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

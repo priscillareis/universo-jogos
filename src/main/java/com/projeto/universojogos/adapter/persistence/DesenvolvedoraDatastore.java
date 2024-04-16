@@ -1,6 +1,6 @@
 package com.projeto.universojogos.adapter.persistence;
 
-import com.projeto.universojogos.adapter.mapper.DesenvolvedoraEntityMapper;
+import com.projeto.universojogos.adapter.mapper.desenvolvedora.DesenvolvedoraEntityMapper;
 import com.projeto.universojogos.adapter.mapper.GenericEntityMapper;
 import com.projeto.universojogos.adapter.outbound.DesenvolvedoraRepository;
 import com.projeto.universojogos.adapter.persistence.entity.DesenvolvedoraEntity;

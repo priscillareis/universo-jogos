@@ -2,6 +2,7 @@ package com.projeto.universojogos.adapter.inbound.rest;
 
 import com.projeto.universojogos.adapter.dto.console.*;
 import com.projeto.universojogos.adapter.mapper.*;
+import com.projeto.universojogos.adapter.mapper.console.ConsoleMapper;
 import com.projeto.universojogos.application.port.inbound.*;
 import com.projeto.universojogos.core.domain.Console;
 import org.springframework.beans.factory.annotation.Autowired;

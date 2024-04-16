@@ -1,7 +1,8 @@
-package com.projeto.universojogos.adapter.mapper;
+package com.projeto.universojogos.adapter.mapper.game;
 
 import com.projeto.universojogos.adapter.dto.game.GameRequest;
 import com.projeto.universojogos.adapter.dto.game.GameResponse;
+import com.projeto.universojogos.adapter.mapper.GenericMapper;
 import com.projeto.universojogos.core.domain.Game;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

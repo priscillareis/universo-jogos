@@ -1,13 +1,14 @@
-package com.projeto.universojogos.adapter.mapper;
+package com.projeto.universojogos.adapter.mapper.console;
 
 import com.projeto.universojogos.adapter.dto.console.*;
+import com.projeto.universojogos.adapter.mapper.GenericMapper;
 import com.projeto.universojogos.core.domain.Console;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ConsoleMapper extends GenericMapper<ConsoleRequest, ConsoleResponse,
-        Console>{
+        Console> {
 
     ConsoleMapper INSTANCE = Mappers.getMapper(ConsoleMapper.class);
 

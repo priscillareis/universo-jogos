@@ -1,6 +1,6 @@
 package com.projeto.universojogos.adapter.persistence;
 
-import com.projeto.universojogos.adapter.mapper.ConsoleEntityMapper;
+import com.projeto.universojogos.adapter.mapper.console.ConsoleEntityMapper;
 import com.projeto.universojogos.adapter.mapper.GenericEntityMapper;
 import com.projeto.universojogos.adapter.outbound.ConsoleRepository;
 import com.projeto.universojogos.adapter.persistence.entity.ConsoleEntity;

@@ -1,5 +1,6 @@
-package com.projeto.universojogos.adapter.mapper;
+package com.projeto.universojogos.adapter.mapper.desenvolvedora;
 
+import com.projeto.universojogos.adapter.mapper.GenericEntityMapper;
 import com.projeto.universojogos.adapter.persistence.entity.DesenvolvedoraEntity;
 import com.projeto.universojogos.core.domain.Desenvolvedora;
 import org.mapstruct.Mapper;

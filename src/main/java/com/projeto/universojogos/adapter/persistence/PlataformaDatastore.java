@@ -1,7 +1,7 @@
 package com.projeto.universojogos.adapter.persistence;
 
 import com.projeto.universojogos.adapter.mapper.GenericEntityMapper;
-import com.projeto.universojogos.adapter.mapper.PlataformaEntityMapper;
+import com.projeto.universojogos.adapter.mapper.plataforma.PlataformaEntityMapper;
 import com.projeto.universojogos.adapter.outbound.PlataformaRepository;
 import com.projeto.universojogos.adapter.persistence.entity.PlataformaEntity;
 import com.projeto.universojogos.application.port.outbound.PlataformaOutbound;

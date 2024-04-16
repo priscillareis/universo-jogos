@@ -3,7 +3,7 @@ package com.projeto.universojogos.adapter.inbound.rest;
 import com.projeto.universojogos.adapter.dto.plataforma.PlataformaRequest;
 import com.projeto.universojogos.adapter.dto.plataforma.PlataformaResponse;
 import com.projeto.universojogos.adapter.mapper.GenericMapper;
-import com.projeto.universojogos.adapter.mapper.PlataformaMapper;
+import com.projeto.universojogos.adapter.mapper.plataforma.PlataformaMapper;
 import com.projeto.universojogos.application.port.inbound.GenericCrudInbound;
 import com.projeto.universojogos.application.port.inbound.PlataformaInbound;
 import com.projeto.universojogos.core.domain.Plataforma;

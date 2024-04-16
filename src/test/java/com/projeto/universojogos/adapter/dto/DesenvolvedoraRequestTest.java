@@ -1,8 +1,10 @@
 package com.projeto.universojogos.adapter.dto;
 
 import com.projeto.universojogos.adapter.config.validation.*;
-import com.projeto.universojogos.adapter.dto.plataforma.PlataformaRequest;
-import jakarta.validation.*;
+import com.projeto.universojogos.adapter.dto.desenvolvedora.DesenvolvedoraRequest;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PlataformaRequestTest {
+public class DesenvolvedoraRequestTest {
     private static Validator validator;
 
     @BeforeAll
@@ -24,17 +26,18 @@ public class PlataformaRequestTest {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-    @DisplayName("Adapter * Deve validar as requests da PlataformaRequest")
+    @DisplayName("Adapter * Deve validar as requests da DesenvolvedoraRequest")
     @ParameterizedTest(name = "{4}")
-    @MethodSource("getPlataformaRequest")
-    public void validacaoObjetoPlataformaRequest(PlataformaRequest plataformaRequest, int quantidadeErrosEsperados,
-                                                 Class classe, List<String> camposViolados, String cenario){
-        Set<ConstraintViolation<PlataformaRequest>> violations =  validator.validate(plataformaRequest,
+    @MethodSource("getDesenvolvedoraRequest")
+    public void validacaoObjetoDesenvolvedoraRequest(DesenvolvedoraRequest desenvolvedoraRequest,
+                                                     int quantidadeErrosEsperados, Class classe,
+                                                     List<String> camposViolados, String cenario){
+        Set<ConstraintViolation<DesenvolvedoraRequest>> violations =  validator.validate(desenvolvedoraRequest,
                 classe);
 
         if(camposViolados.isEmpty()){
             assertAll(
-                    () -> assertNotNull(plataformaRequest),
+                    () -> assertNotNull(desenvolvedoraRequest),
                     () -> assertThat(violations.size()).isEqualTo(quantidadeErrosEsperados)
             );
         }else{
@@ -45,25 +48,25 @@ public class PlataformaRequestTest {
         }
     }
 
-    public static Collection<Object[]> getPlataformaRequest(){
+    public static Collection<Object[]> getDesenvolvedoraRequest(){
         return Arrays.asList(new Object[][]{
-                {new PlataformaRequest(5, "Sony"), 0, ValidacaoCadastro.class, List.of(),
+                {new DesenvolvedoraRequest(5, "Game Freak"), 0, ValidacaoCadastro.class, List.of(),
                         "Deve criar a request com sucesso"},
-                {new PlataformaRequest(6, ""), 1, ValidacaoCadastro.class, List.of("nome"),
+                {new DesenvolvedoraRequest(6, ""), 1, ValidacaoCadastro.class, List.of("nome"),
                         "Deve ter violações ao tentar criar request de cadastro sem nome"},
 
-                {new PlataformaRequest(7, null), 0, ValidacaoConsulta.class, List.of(),
+                {new DesenvolvedoraRequest(7, null), 0, ValidacaoConsulta.class, List.of(),
                         "Deve criar a request de consulta com sucesso"},
-                {new PlataformaRequest(0, "Xbox"), 1, ValidacaoConsulta.class, List.of("id"),
+                {new DesenvolvedoraRequest(0, "Santa Monica"), 1, ValidacaoConsulta.class, List.of("id"),
                         "Deve ter violações ao tentar criar request de consulta sem id"},
 
-                {new PlataformaRequest(12, "Nintendo"), 0, ValidacaoAtualizacao.class, List.of(),
+                {new DesenvolvedoraRequest(12, "Guerrilha"), 0, ValidacaoAtualizacao.class, List.of(),
                         "Deve criar a request de atualizar com sucesso"},
-                {new PlataformaRequest(0, null), 2, ValidacaoAtualizacao.class, List.of("id","nome"),
+                {new DesenvolvedoraRequest(0, null), 2, ValidacaoAtualizacao.class, List.of("id","nome"),
                         "Deve ter violações ao tentar criar request de atualizar sem id e sem nome"},
-                {new PlataformaRequest(0, "Nintendo"), 1, ValidacaoAtualizacao.class, List.of("id"),
+                {new DesenvolvedoraRequest(0, "Guerrilha"), 1, ValidacaoAtualizacao.class, List.of("id"),
                         "Deve ter violações ao tentar criar request de atualizar sem id"},
-                {new PlataformaRequest(10, ""), 1, ValidacaoAtualizacao.class, List.of("nome"),
+                {new DesenvolvedoraRequest(10, ""), 1, ValidacaoAtualizacao.class, List.of("nome"),
                         "Deve ter violações ao tentar criar request de atualizar sem nome"}
         });
     }

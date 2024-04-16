@@ -2,13 +2,8 @@ package com.projeto.universojogos.adapter.dto.console;
 
 import com.projeto.universojogos.adapter.config.validation.ValidacaoCadastro;
 import com.projeto.universojogos.adapter.dto.plataforma.PlataformaRequest;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 @Getter
 @Setter

@@ -63,7 +63,7 @@ public class PlataformaRequestTest {
                         "Deve ter violações ao tentar criar request de atualizar sem id e sem nome"},
                 {new PlataformaRequest(0, "Nintendo"), 1, ValidacaoAtualizacao.class, List.of("id"),
                         "Deve ter violações ao tentar criar request de atualizar sem id"},
-                {new PlataformaRequest(10, ""), 1, ValidacaoAtualizacao.class, List.of("nome"),
+                {new PlataformaRequest().setId(10).setNome(""), 1, ValidacaoAtualizacao.class, List.of("nome"),
                         "Deve ter violações ao tentar criar request de atualizar sem nome"}
         });
     }

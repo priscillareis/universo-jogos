@@ -36,10 +36,11 @@ public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/consultar")
+    @GetMapping(value = "/consultar/{request}")
+    @ResponseBody
     public ResponseEntity<MT2> consultar(@RequestHeader HttpHeaders headers,
                                          @Validated(ValidacaoConsulta.class)
-                                         @RequestBody ID request) throws Exception{
+                                         @PathVariable ID request) throws Exception{
         LOGGER.createInfoLog(headers, request, TipoLog.REQUEST,"Consulta.");
 
         var resultado = getService().consultar(request);
@@ -50,7 +51,7 @@ public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping(value = "/atualizar")
+    @PutMapping(value = "/atualizar/{id}")
     public ResponseEntity<MT2> atualizar(@RequestHeader HttpHeaders headers,
                                          @Validated(ValidacaoAtualizacao.class)
                                          @RequestBody MT1 request,
@@ -66,10 +67,10 @@ public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/deletar")
+    @GetMapping(value = "/deletar/{request}")
     public ResponseEntity<HttpStatus> deletar(@RequestHeader HttpHeaders headers,
                                               @Validated(ValidacaoConsulta.class)
-                                         @RequestBody ID request) throws Exception{
+                                         @PathVariable ID request) throws Exception{
         LOGGER.createInfoLog(headers, request, TipoLog.REQUEST,"Delete.");
 
         getService().deletar(request);

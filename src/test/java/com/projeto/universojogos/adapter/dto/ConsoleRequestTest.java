@@ -74,9 +74,11 @@ public class ConsoleRequestTest {
 
                 {new ConsoleRequest(11, "Switch","",plataformaNintendo), 0,
                         ValidacaoAtualizacao.class, List.of(), "Deve criar a request de atualizar com sucesso"},
-                {new ConsoleRequest(11, "Switch","1",plataformaNintendo), 1,
-                        ValidacaoAtualizacao.class, List.of("anoLancamento"),
+                {new ConsoleRequest().setId(11).setNome("Switch").setAnoLancamento("1")
+                        .setPlataforma(plataformaNintendo),
+                        1, ValidacaoAtualizacao.class, List.of("anoLancamento"),
                         "Deve ter violações ao tentar criar request de atualizacao com ano lancamento invalido"},
         });
+
     }
 }

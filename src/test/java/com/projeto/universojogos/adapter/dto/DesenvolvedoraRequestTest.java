@@ -66,7 +66,7 @@ public class DesenvolvedoraRequestTest {
                         "Deve ter violações ao tentar criar request de atualizar sem id e sem nome"},
                 {new DesenvolvedoraRequest(0, "Guerrilha"), 1, ValidacaoAtualizacao.class, List.of("id"),
                         "Deve ter violações ao tentar criar request de atualizar sem id"},
-                {new DesenvolvedoraRequest(10, ""), 1, ValidacaoAtualizacao.class, List.of("nome"),
+                {new DesenvolvedoraRequest().setId(10).setNome(""), 1, ValidacaoAtualizacao.class, List.of("nome"),
                         "Deve ter violações ao tentar criar request de atualizar sem nome"}
         });
     }

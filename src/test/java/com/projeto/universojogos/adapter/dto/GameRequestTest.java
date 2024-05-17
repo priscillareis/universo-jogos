@@ -77,9 +77,12 @@ public class GameRequestTest {
 
                 {new GameRequest(11, "Pokemon Yellow","",consoleNintendoWii,desenvolvedoraFreak),
                         0, ValidacaoAtualizacao.class, List.of(), "Deve criar a request de atualizar com sucesso"},
-                {new GameRequest(11, "Switch","1",consoleNintendoWii,desenvolvedoraFreak), 1,
-                        ValidacaoAtualizacao.class, List.of("anoLancamento"),
+                {new GameRequest().setId(11).setNome("Switch").setAnoLancamento("1").setConsole(consoleNintendoWii)
+                        .setDesenvolvedora(desenvolvedoraFreak),
+                        1, ValidacaoAtualizacao.class, List.of("anoLancamento"),
                         "Deve ter violações ao tentar criar request de atualizacao com ano lancamento invalido"},
         });
+
+
     }
 }

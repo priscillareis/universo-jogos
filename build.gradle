@@ -26,7 +26,7 @@ ext{
 	mapstructVersion = "1.5.5.Final"
 	lombokVersion = "1.18.30"
 	lombokMapstructBindingVersion = "0.2.0"
-	mySqlVersion = "8.0.32"
+	mySqlVersion = "8.2.0"
 }
 
 dependencies {
@@ -36,7 +36,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-	implementation "mysql:mysql-connector-java:${mySqlVersion}"
+	implementation "com.mysql:mysql-connector-j:${mySqlVersion}"
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}",
 			"org.projectlombok:lombok:${lombokVersion}",

@@ -1,4 +1,4 @@
-package com.projeto.universojogos.core.domain;
+package com.projeto.universojogos.adapter.dto.jogador;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,13 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class JogadorResponse {
     private int id;
-
-    private String usuario;
-
-    private String senha;
-
-    private Status status;
-
+    private String nome;
 }

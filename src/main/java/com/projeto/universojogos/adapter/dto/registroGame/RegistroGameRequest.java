@@ -1,12 +1,13 @@
-package com.projeto.universojogos.adapter.dto.colecao;
+package com.projeto.universojogos.adapter.dto.registroGame;
 
 import com.projeto.universojogos.adapter.config.validation.ValidacaoAtualizacao;
 import com.projeto.universojogos.adapter.config.validation.ValidacaoCadastro;
 import com.projeto.universojogos.adapter.config.validation.ValidacaoConsulta;
 import com.projeto.universojogos.adapter.config.validation.mensagens.MensagensValidacao;
-import com.projeto.universojogos.adapter.dto.console.ConsoleRequest;
+import com.projeto.universojogos.adapter.dto.game.GameRequest;
+import com.projeto.universojogos.adapter.dto.jogador.JogadorRequest;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,15 +21,23 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ColecaoRequest {
+public class RegistroGameRequest {
     @Min(value = 1,groups =  {ValidacaoConsulta.class, ValidacaoAtualizacao.class},
             message = MensagensValidacao.ID_OBRIGATORIO)
     private int id;
 
-    private String dataAquisicao;
+    private String dataInicio;
 
-    private BigDecimal valorAquisicao;
+    private String dataFim;
 
-    @NotNull(groups = {ValidacaoCadastro.class}, message=MensagensValidacao.CONSOLE_OBRIGATORIO)
-    private ConsoleRequest console;
+    @NotBlank(groups = {ValidacaoCadastro.class}, message = MensagensValidacao.GAME_OBRIGATORIO)
+    private GameRequest game;
+
+    @NotBlank(groups = {ValidacaoCadastro.class}, message = MensagensValidacao.JOGADOR_OBRIGATORIO)
+    private JogadorRequest jogador;
+
+    private BigDecimal horasJogadas;
+
+    private boolean todasConquistas;
+
 }

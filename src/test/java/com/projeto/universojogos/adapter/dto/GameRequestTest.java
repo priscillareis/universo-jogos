@@ -57,25 +57,25 @@ public class GameRequestTest {
 
     public static Collection<Object[]> getConsoleRequest(){
         return Arrays.asList(new Object[][]{
-                {new GameRequest(1, "God of War", "2014", consolePlay1,desenvolvedoraMonica), 0,
+                {new GameRequest(1, "God of War", "2014", null,null,consolePlay1,desenvolvedoraMonica), 0,
                         ValidacaoCadastro.class, List.of(), "Deve criar a request com sucesso"},
-                {new GameRequest(6, "","", null, null), 2,
+                {new GameRequest(6, "","", null,null,null, null), 2,
                         ValidacaoCadastro.class, List.of("nome", "console"),
                         "Deve ter violações ao tentar criar request de cadastro sem nome, console"},
-                {new GameRequest(2, "God of War","", null, null), 1,
+                {new GameRequest(2, "God of War","", null,null,null, null), 1,
                         ValidacaoCadastro.class, List.of( "console"),
                         "Deve ter violações ao tentar criar request de cadastro sem console"},
-                {new GameRequest(3, "","", consolePlay1,desenvolvedoraMonica), 1,
+                {new GameRequest(3, "","",null,null, consolePlay1,desenvolvedoraMonica), 1,
                         ValidacaoCadastro.class, List.of("nome"),
                         "Deve ter violações ao tentar criar request de cadastro sem nome"},
 
-                {new GameRequest(7, "","",null,null), 0,
+                {new GameRequest(7, "","",null,null,null,null), 0,
                         ValidacaoConsulta.class, List.of(), "Deve criar a request de consulta com sucesso"},
-                {new GameRequest(0, "","",consoleXbox360,desenvolvedoraMonica), 1,
+                {new GameRequest(0, "","",null,null,consoleXbox360,desenvolvedoraMonica), 1,
                         ValidacaoConsulta.class, List.of("id"),
                         "Deve ter violações ao tentar criar request de consulta sem id"},
 
-                {new GameRequest(11, "Pokemon Yellow","",consoleNintendoWii,desenvolvedoraFreak),
+                {new GameRequest(11, "Pokemon Yellow","",null,null,consoleNintendoWii,desenvolvedoraFreak),
                         0, ValidacaoAtualizacao.class, List.of(), "Deve criar a request de atualizar com sucesso"},
                 {new GameRequest().setId(11).setNome("Switch").setAnoLancamento("1").setConsole(consoleNintendoWii)
                         .setDesenvolvedora(desenvolvedoraFreak),

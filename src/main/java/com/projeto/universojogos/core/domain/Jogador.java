@@ -9,13 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class Jogador {
     private int id;
 
-    private String usuario;
-
-    private String senha;
-
-    private Status status;
-
+    private String nome;
 }

@@ -8,6 +8,8 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,6 +27,10 @@ public class GameRequest {
             groups = {ValidacaoConsulta.class, ValidacaoAtualizacao.class, ValidacaoCadastro.class},
             message = MensagensValidacao.ANO_INVALIDO)
     private String anoLancamento;
+
+    private String dataAquisicao;
+
+    private BigDecimal valorAquisicao;
 
     @NotNull(groups = {ValidacaoCadastro.class}, message=MensagensValidacao.CONSOLE_OBRIGATORIO)
     private ConsoleRequest console;

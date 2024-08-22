@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "registroGames")
+@Entity(name = "registros_games")
 public class RegistroGameEntity {
 
     @Id

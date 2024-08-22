@@ -6,7 +6,6 @@ import com.projeto.universojogos.adapter.config.validation.ValidacaoConsulta;
 import com.projeto.universojogos.adapter.config.validation.mensagens.MensagensValidacao;
 import com.projeto.universojogos.adapter.dto.colecao.ColecaoRequest;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

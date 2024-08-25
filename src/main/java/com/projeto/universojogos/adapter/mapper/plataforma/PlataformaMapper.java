@@ -6,6 +6,8 @@ import com.projeto.universojogos.core.domain.Plataforma;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface PlataformaMapper extends GenericMapper<PlataformaRequest, PlataformaResponse,
         Plataforma> {
@@ -15,4 +17,6 @@ public interface PlataformaMapper extends GenericMapper<PlataformaRequest, Plata
     Plataforma toDomain(PlataformaRequest plataformaRequest);
 
     PlataformaResponse toResponse(Plataforma plataforma);
+
+    List<PlataformaResponse> toResponse(List<Plataforma> plataforma);
 }

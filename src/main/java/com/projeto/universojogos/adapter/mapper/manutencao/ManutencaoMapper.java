@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface ManutencaoMapper extends GenericMapper<ManutencaoRequest, ManutencaoResponse, Manutencao> {
 
@@ -18,4 +20,7 @@ public interface ManutencaoMapper extends GenericMapper<ManutencaoRequest, Manut
 
     @Mapping(target = "data", source = "data", dateFormat = "dd/MM/yyyy")
     ManutencaoResponse toResponse(Manutencao manutencao);
+
+    @Mapping(target = "data", source = "data", dateFormat = "dd/MM/yyyy")
+    List<ManutencaoResponse> toResponse(List<Manutencao> manutencao);
 }

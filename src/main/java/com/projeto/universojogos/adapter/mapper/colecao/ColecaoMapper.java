@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface ColecaoMapper extends GenericMapper<ColecaoRequest, ColecaoResponse, Colecao> {
     ColecaoMapper INSTANCE = Mappers.getMapper(ColecaoMapper.class);
@@ -17,4 +19,7 @@ public interface ColecaoMapper extends GenericMapper<ColecaoRequest, ColecaoResp
 
     @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
     ColecaoResponse toResponse(Colecao colecao);
+
+    @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
+    List<ColecaoResponse> toResponse(List<Colecao> colecao);
 }

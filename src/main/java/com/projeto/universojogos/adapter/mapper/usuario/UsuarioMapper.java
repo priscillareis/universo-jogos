@@ -7,6 +7,8 @@ import com.projeto.universojogos.core.domain.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface UsuarioMapper extends GenericMapper<UsuarioRequest, UsuarioResponse, Usuario> {
 
@@ -15,4 +17,6 @@ public interface UsuarioMapper extends GenericMapper<UsuarioRequest, UsuarioResp
     Usuario toDomain(UsuarioRequest usuarioRequest);
 
     UsuarioResponse toResponse(Usuario usuario);
+
+    List<UsuarioResponse> toResponse(List<Usuario> usuario);
 }

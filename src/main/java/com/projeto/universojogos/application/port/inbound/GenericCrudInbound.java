@@ -1,14 +1,17 @@
 package com.projeto.universojogos.application.port.inbound;
 
 import java.io.Serializable;
+import java.util.List;
 
-public interface GenericCrudInbound<T, ID extends Serializable> {
+public interface GenericCrudInbound<Dominio, ID extends Serializable> {
 
-    T cadastrar(T dominio) throws Exception;
+    Dominio cadastrar(Dominio dominio) throws Exception;
 
-    T consultar(ID id) throws Exception;
+    Dominio consultar(ID id) throws Exception;
 
-    T atualizar(ID id, T dominio) throws Exception;
+    List<Dominio> consultarTodos() throws Exception;
+
+    Dominio atualizar(ID id, Dominio dominio) throws Exception;
 
     void deletar(ID id) throws Exception;
 }

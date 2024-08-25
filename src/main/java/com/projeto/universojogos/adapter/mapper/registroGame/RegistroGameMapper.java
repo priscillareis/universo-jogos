@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface RegistroGameMapper extends GenericMapper<RegistroGameRequest, RegistroGameResponse, RegistroGame> {
 
@@ -19,4 +21,8 @@ public interface RegistroGameMapper extends GenericMapper<RegistroGameRequest, R
     @Mapping(target = "dataInicio", source = "dataInicio", dateFormat = "dd/MM/yyyy")
     @Mapping(target = "dataFim", source = "dataFim", dateFormat = "dd/MM/yyyy")
     RegistroGameResponse toResponse(RegistroGame registroGame);
+
+    @Mapping(target = "dataInicio", source = "dataInicio", dateFormat = "dd/MM/yyyy")
+    @Mapping(target = "dataFim", source = "dataFim", dateFormat = "dd/MM/yyyy")
+    List<RegistroGameResponse> toResponse(List<RegistroGame> registroGame);
 }

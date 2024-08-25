@@ -8,17 +8,18 @@ import com.projeto.universojogos.core.util.LoggingBase;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Service
-public abstract class GenericCrudService<T, ID extends Serializable> implements GenericCrudInbound<T, ID> {
+public abstract class GenericCrudService<Dominio, ID extends Serializable> implements GenericCrudInbound<Dominio, ID> {
 
-    protected abstract GenericCrudOutbound<T, ID> getOutbound();
+    protected abstract GenericCrudOutbound<Dominio, ID> getOutbound();
     private final LoggingBase LOGGER = new LoggingBase("Service");
 
     @Override
-    public T cadastrar(T dominio) throws Exception {
+    public Dominio cadastrar(Dominio dominio) throws Exception {
         if (dominio == null){
-            LOGGER.createErroLog(null, dominio, TipoLog.PROCESSO,"Recurso informado nulo.");
+            LOGGER.createErroLog(null, null, TipoLog.PROCESSO,"Recurso informado nulo.");
 
             throw new ParametroInvalidoException("Recurso informado é inválido.");
         }
@@ -26,9 +27,14 @@ public abstract class GenericCrudService<T, ID extends Serializable> implements 
     }
 
     @Override
-    public T consultar(ID id) throws Exception {
+    public List<Dominio> consultarTodos() throws Exception {
+        return getOutbound().consultarTodos();
+    }
+
+    @Override
+    public Dominio consultar(ID id) throws Exception {
         if (id == null){
-            LOGGER.createErroLog(null, id, TipoLog.PROCESSO,"Recurso informado nulo.");
+            LOGGER.createErroLog(null, null, TipoLog.PROCESSO,"Recurso informado nulo.");
 
             throw new ParametroInvalidoException("Recurso informado é inválido.");
         }
@@ -36,9 +42,9 @@ public abstract class GenericCrudService<T, ID extends Serializable> implements 
     }
 
     @Override
-    public T atualizar(ID id, T dominio) throws Exception {
+    public Dominio atualizar(ID id, Dominio dominio) throws Exception {
         if (id == null || dominio == null){
-            LOGGER.createErroLog(null, id, TipoLog.PROCESSO,"Recurso informado nulo.");
+            LOGGER.createErroLog(null, id+" - "+dominio, TipoLog.PROCESSO,"Recurso informado nulo.");
 
             throw new ParametroInvalidoException("Recurso informado é inválido.");
         }
@@ -48,7 +54,7 @@ public abstract class GenericCrudService<T, ID extends Serializable> implements 
     @Override
     public void deletar(ID id) throws Exception {
         if (id == null){
-            LOGGER.createErroLog(null, id, TipoLog.PROCESSO,"Recurso informado nulo.");
+            LOGGER.createErroLog(null, null, TipoLog.PROCESSO,"Recurso informado nulo.");
 
             throw new ParametroInvalidoException("Recurso informado é inválido.");
         }

@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface GameEntityMapper extends GenericEntityMapper<Game, GameEntity> {
 
@@ -14,6 +16,9 @@ public interface GameEntityMapper extends GenericEntityMapper<Game, GameEntity> 
 
     @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
     Game toDomain(GameEntity gameEntity);
+
+    @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
+    List<Game> toDomain(List<GameEntity> gameEntity);
 
     @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
     GameEntity toEntity(Game game);

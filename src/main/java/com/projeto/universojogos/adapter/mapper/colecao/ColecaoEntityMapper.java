@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface ColecaoEntityMapper extends GenericEntityMapper<Colecao, ColecaoEntity> {
     ColecaoEntityMapper INSTANCE = Mappers.getMapper(ColecaoEntityMapper.class);
@@ -15,5 +17,10 @@ public interface ColecaoEntityMapper extends GenericEntityMapper<Colecao, Coleca
     Colecao toDomain(ColecaoEntity colecaoEntity);
 
     @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
+    List<Colecao> toDomain(List<ColecaoEntity> colecaoEntity);
+
+    @Mapping(target = "dataAquisicao", source = "dataAquisicao", dateFormat = "dd/MM/yyyy")
     ColecaoEntity toEntity(Colecao colecao);
+
+
 }

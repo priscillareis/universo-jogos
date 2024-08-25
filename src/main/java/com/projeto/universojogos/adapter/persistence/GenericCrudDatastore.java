@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Component
 public abstract class GenericCrudDatastore<T, ID extends Serializable, MT3> implements GenericCrudOutbound<T, ID> {
@@ -37,6 +38,19 @@ public abstract class GenericCrudDatastore<T, ID extends Serializable, MT3> impl
                         id);
             }
             return getMapper().toDomain(resultado.get());
+        }catch (Exception ex){
+            throw new Exception(ex);
+        }
+    }
+
+    @Override
+    public List<T> consultarTodos() throws Exception{
+        try{
+            var resultado = getRepository().findAll();
+            if(resultado.isEmpty()){
+                throw new NotFoundException("Nenhum recurso encontrado.");
+            }
+            return getMapper().toDomain(resultado);
         }catch (Exception ex){
             throw new Exception(ex);
         }

@@ -12,18 +12,32 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.List;
 
-public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2> {
+public abstract class GenericCrudController<Dominio, ID extends Serializable, Request, Response> {
 
-    public abstract GenericCrudInbound<T, ID> getService();
+    public abstract GenericCrudInbound<Dominio, ID> getService();
 
-    public abstract GenericMapper<MT1, MT2, T> getMapper();
+    public abstract GenericMapper<Request, Response, Dominio> getMapper();
     private final LoggingBase LOGGER = new LoggingBase("Controller");
 
-    @PostMapping(value = "/cadastrar")
-    public ResponseEntity<MT2> save(@RequestHeader HttpHeaders headers,
-                                  @Validated(ValidacaoCadastro.class)
-                                  @RequestBody MT1 request) throws Exception {
+    @GetMapping(value = "/")
+    @ResponseBody
+    public ResponseEntity<List<Response>> consultartodos(@RequestHeader HttpHeaders headers) throws Exception{
+        LOGGER.createInfoLog(headers, "sem body", TipoLog.REQUEST,"Consulta todos.");
+
+        var resultado = getService().consultarTodos();
+        var response = getMapper().toResponse(resultado);
+
+        LOGGER.createInfoLog(headers, response, TipoLog.RESPONSE,"Consulta Realizada.");
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = "/")
+    public ResponseEntity<Response> save(@RequestHeader HttpHeaders headers,
+                                         @Validated(ValidacaoCadastro.class)
+                                         @RequestBody Request request) throws Exception {
 
         LOGGER.createInfoLog(headers, request, TipoLog.REQUEST,"Cadastro.");
 
@@ -36,14 +50,14 @@ public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/consultar/{request}")
+    @GetMapping(value = "/{id}")
     @ResponseBody
-    public ResponseEntity<MT2> consultar(@RequestHeader HttpHeaders headers,
-                                         @Validated(ValidacaoConsulta.class)
-                                         @PathVariable ID request) throws Exception{
-        LOGGER.createInfoLog(headers, request, TipoLog.REQUEST,"Consulta.");
+    public ResponseEntity<Response> consultar(@RequestHeader HttpHeaders headers,
+                                              @Validated(ValidacaoConsulta.class)
+                                              @PathVariable ID id) throws Exception{
+        LOGGER.createInfoLog(headers, id, TipoLog.REQUEST,"Consulta.");
 
-        var resultado = getService().consultar(request);
+        var resultado = getService().consultar(id);
         var response = getMapper().toResponse(resultado);
 
         LOGGER.createInfoLog(headers, response, TipoLog.RESPONSE,"Consulta Realizada.");
@@ -51,11 +65,11 @@ public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping(value = "/atualizar/{id}")
-    public ResponseEntity<MT2> atualizar(@RequestHeader HttpHeaders headers,
-                                         @Validated(ValidacaoAtualizacao.class)
-                                         @RequestBody MT1 request,
-                                         @PathVariable ID id) throws Exception{
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Response> atualizar(@RequestHeader HttpHeaders headers,
+                                              @Validated(ValidacaoAtualizacao.class)
+                                              @RequestBody Request request,
+                                              @PathVariable ID id) throws Exception{
         LOGGER.createInfoLog(headers, request, TipoLog.REQUEST,"Atualização.");
 
         var dominio = getMapper().toDomain(request);
@@ -67,13 +81,13 @@ public abstract class GenericCrudController<T, ID extends Serializable, MT1, MT2
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/deletar/{request}")
+    @DeleteMapping(value = "/{request}")
     public ResponseEntity<HttpStatus> deletar(@RequestHeader HttpHeaders headers,
                                               @Validated(ValidacaoConsulta.class)
-                                         @PathVariable ID request) throws Exception{
-        LOGGER.createInfoLog(headers, request, TipoLog.REQUEST,"Delete.");
+                                              @PathVariable ID id) throws Exception{
+        LOGGER.createInfoLog(headers, id, TipoLog.REQUEST,"Delete.");
 
-        getService().deletar(request);
+        getService().deletar(id);
 
         LOGGER.createInfoLog(headers, "sem retorno.", TipoLog.RESPONSE,"Deleção Realizada.");
 

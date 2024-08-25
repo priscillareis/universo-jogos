@@ -6,6 +6,8 @@ import com.projeto.universojogos.core.domain.Desenvolvedora;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface DesenvolvedoraMapper extends GenericMapper<DesenvolvedoraRequest, DesenvolvedoraResponse,
         Desenvolvedora> {
@@ -15,5 +17,7 @@ public interface DesenvolvedoraMapper extends GenericMapper<DesenvolvedoraReques
     Desenvolvedora toDomain(DesenvolvedoraRequest desenvolvedoraRequest);
 
     DesenvolvedoraResponse toResponse(Desenvolvedora desenvolvedora);
+
+    List<DesenvolvedoraResponse> toResponse(List<Desenvolvedora> desenvolvedora);
 
 }

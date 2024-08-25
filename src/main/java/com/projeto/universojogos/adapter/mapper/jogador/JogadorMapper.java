@@ -6,6 +6,8 @@ import com.projeto.universojogos.core.domain.Jogador;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface JogadorMapper extends GenericMapper<JogadorRequest, JogadorResponse, Jogador> {
 
@@ -14,4 +16,6 @@ public interface JogadorMapper extends GenericMapper<JogadorRequest, JogadorResp
     Jogador toDomain(JogadorRequest jogadorRequest);
 
     JogadorResponse toResponse(Jogador jogador);
+
+    List<JogadorResponse> toResponse(List<Jogador> jogador);
 }

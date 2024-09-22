@@ -81,8 +81,9 @@ public abstract class GenericCrudController<Dominio, ID extends Serializable, Re
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping(value = "/{request}")
-    public ResponseEntity<HttpStatus> deletar(@RequestHeader HttpHeaders headers,
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deletar(@RequestHeader HttpHeaders headers,
                                               @Validated(ValidacaoConsulta.class)
                                               @PathVariable ID id) throws Exception{
         LOGGER.createInfoLog(headers, id, TipoLog.REQUEST,"Delete.");
@@ -91,6 +92,5 @@ public abstract class GenericCrudController<Dominio, ID extends Serializable, Re
 
         LOGGER.createInfoLog(headers, "sem retorno.", TipoLog.RESPONSE,"Deleção Realizada.");
 
-        return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }
 }
